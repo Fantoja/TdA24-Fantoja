@@ -2,5 +2,5 @@
 Hlavní repozitář soutěže TourDeApp
 
 
-##Franta smrdí
+## Franta smrdí
 to je fakt
