@@ -16,16 +16,16 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-      - name: Build
+      - name: Build and push multi-platform images
         uses: docker/build-push-action@v3
         with:
           context: ./
-          tags: tda-django:latest
-          outputs: type=docker,dest=/tmp/tda-django.tar
+          tags: tda-flask:latest
+          outputs: type=docker,dest=/tmp/tda-flask.tar
 
       - name: Upload to TdA
         uses: Tour-de-App/upload-app@tda-24
         with:
           team_secret: ${{ secrets.TEAM_SECRET }}
-          image_name: tda-django
-          image_path: /tmp/tda-django.tar
+          image_name: tda-flask
+          image_path: /tmp/tda-flask.tar
