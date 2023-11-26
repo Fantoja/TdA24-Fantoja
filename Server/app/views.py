@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse
 
 # Vratí domovskou stránku
 def home(request):
-    return render(request, "base.html")
+    return HttpResponse("Hello dA")
 
 # Funkce vrátí json soubor
 def get_json(request):
