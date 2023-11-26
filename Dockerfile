@@ -1,26 +1,18 @@
-# Používáme oficiální Python obraz jako základní obraz
-FROM python:3.8
+# syntax=docker/dockerfile:1
 
-# Nastavíme pracovní adresář ve stroji Docker
+FROM python:3.10-buster
+
 WORKDIR /app
 
-# Zkopírujeme soubory potřebné pro instalaci závislostí
-COPY ./requirements.txt /app/requirements.txt
+RUN pip install pipenv
 
-# Nainstalujeme závislosti
-RUN pip install --no-cache-dir -r requirements.txt
+COPY Pipfile .
+COPY Pipfile.lock .
 
-# Zkopírujeme zbytek kódu do pracovního adresáře
-COPY . /app
+RUN pipenv install --system --deploy
 
-# Nastavíme proměnnou prostředí pro Django
-ENV DJANGO_SETTINGS_MODULE=Server.settings
+COPY . .
 
-# Vytvoříme databázi a provedeme migrace
-RUN python Server/manage.py migrate
+EXPOSE 80
 
-# Exponujeme port, na kterém bude běžet aplikace
-EXPOSE 8000
-
-# Spustíme server při startu kontejneru
-CMD ["python", "Server/manage.py", "runserver", "0.0.0.0:8000"]
+CMD python3 manage.py runserver 0.0.0.0:80
