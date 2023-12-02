@@ -4,15 +4,21 @@ FROM python:3.10-buster
 
 WORKDIR /app
 
+# Instalace pipenv
 RUN pip install pipenv
 
-COPY Pipfile .
-COPY Pipfile.lock .
+# Kopírování souborů pro instalaci závislostí
+COPY Pipfile Pipfile
+COPY Pipfile.lock Pipfile.lock
 
-RUN pipenv install --system --deploy
+# Instalace závislostí
+RUN pipenv install --deploy --ignore-pipfile
 
+# Kopírování zbylých souborů do kontejneru
 COPY . .
 
-EXPOSE 50
+# Exponování portu 
+EXPOSE 5000
 
+# Spuštění startovacího skriptu
 CMD ["./start.sh"]
