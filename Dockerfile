@@ -11,9 +11,6 @@ RUN pip install pipenv
 COPY Pipfile Pipfile
 COPY Pipfile.lock Pipfile.lock
 
-# Instalace závislostí
-RUN pipenv install --deploy --ignore-pipfile
-
 # Kopírování zbylých souborů do kontejneru
 COPY . .
 
