@@ -18,4 +18,4 @@ COPY . .
 EXPOSE 5000
 
 # Spuštění startovacího skriptu
-CMD ["./start.sh"]
+CMD ["RUN chmod +x start.sh"]
