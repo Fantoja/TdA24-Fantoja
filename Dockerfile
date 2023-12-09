@@ -18,4 +18,4 @@ COPY . .
 EXPOSE 5000
 
 # Spuštění startovacího skriptu
-RUN chmod +x start.sh
+RUN chmod +x /app/start.sh
