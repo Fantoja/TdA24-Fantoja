@@ -18,4 +18,4 @@ COPY . .
 EXPOSE 5000
 
 # Spuštění startovacího skriptu
-RUN chmod +x /app/start.sh
+RUN chmod python3 -m flask run --host=0.0.0.0 --port=5000 app.py
